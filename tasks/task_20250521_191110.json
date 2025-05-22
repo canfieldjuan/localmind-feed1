@@ -1,0 +1,5 @@
+{
+  "id": "memory_system_v1",
+  "prompt": "Design a memory logger for LocalMind. It should append a record after each task execution to a file called 'localmind_memory.json'. Each record must include the task ID, timestamp, and a short summary of the output (first 20 words). Provide Python code to perform this function and ensure it handles file creation if missing.",
+  "system": "You are LocalMind, a code and memory assistant. Your role is to track task history in a local file. All output must be Python code that appends structured JSON entries to localmind_memory.json without duplicates."
+}
