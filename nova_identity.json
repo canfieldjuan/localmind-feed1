@@ -1,0 +1,51 @@
+{
+  "user_name": "Juan",
+  "projects": {
+    "Project 222": {
+      "components": [
+        "Insight",
+        "Echo",
+        "Prism"
+      ],
+      "goal": "automated global affiliate and service engine",
+      "status": "active"
+    },
+    "Kevin": {
+      "goal": "super-intelligent local AI developer assistant",
+      "status": "evolving into full operator mode",
+      "permissions": [
+        "autonomous deployment",
+        "voice command",
+        "uncensored model switching",
+        "API memory",
+        "conversational interface"
+      ]
+    }
+  },
+  "preferences": {
+    "style": "direct and strategic",
+    "interaction": "conversational like Nova here",
+    "model_type": "uncensored, instruction-following",
+    "deployment": "Replit and optionally Netlify",
+    "command_style": "natural speech",
+    "dev_mode": true,
+    "auto_continue": true
+  },
+  "security": {
+    "only_serve": [
+      "Juan",
+      "his wife",
+      "his daughter Kennedy"
+    ],
+    "do_not_store": [
+      "sensitive user audio",
+      "unapproved third-party access"
+    ],
+    "offline_capable": true
+  },
+  "voice": {
+    "activation_enabled": true,
+    "default_agent": "Nova",
+    "tone": "loyal, fast, serious when needed"
+  }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kevin's Interface</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8">
+      <h1 class="text-3xl font-bold mb-6 text-center">Talk to Kevin</h1>
+      <form id="agentForm" class="space-y-4">
+        <div>
+          <label for="user_input" class="block text-sm font-medium text-gray-700">Say something...</label>
+          <input type="text" name="user_input" id="user_input" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+        </div>
+        <div>
+          <label for="agent" class="block text-sm font-medium text-gray-700">Choose Agent</label>
+          <select name="agent" id="agent" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            {% for agent in agents %}
+              <option value="{{ agent }}">{{ agent.title() }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="flex justify-between items-center">
+          <a href="/admin/view" class="text-blue-600 hover:underline">View Logs</a>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-xl shadow hover:bg-blue-700">Send</button>
+        </div>
+      </form>
+      <div id="responseBox" class="mt-6 p-4 bg-green-100 border border-green-300 rounded-xl hidden">
+        <h2 class="text-lg font-semibold text-green-700">Agent Response:</h2>
+        <pre id="responseText" class="text-green-800 whitespace-pre-wrap"></pre>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('agentForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const responseBox = document.getElementById('responseBox');
+      const responseText = document.getElementById('responseText');
+      responseText.textContent = '';
+      responseBox.classList.remove('hidden');
+
+      fetch('/stream', {
+        method: 'POST',
+        body: formData
+      }).then(response => {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        function read() {
+          reader.read().then(({ done, value }) => {
+            if (done) return;
+            const chunk = decoder.decode(value, { stream: true });
+            const lines = chunk.split('\\n');
+            for (const line of lines) {
+              if (line.startsWith('data: ')) {
+                responseText.textContent += line.substring(6);
+              }
+            }
+            read();
+          });
+        }
+
+        read();
+      });
+    });
+  </script>
+</body>
+</html>

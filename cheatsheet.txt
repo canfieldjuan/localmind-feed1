@@ -1,0 +1,25 @@
+🧠 KEVIN COMMAND CHEATSHEET
+
+🔨 BUILD & DEPLOY
+- #build and deploy [site]         → Builds frontend + backend and prepares for Netlify
+
+📲 ALERTS
+- #send link to my phone           → Triggers IFTTT webhook to notify your phone
+
+📝 CONTENT / COPY
+- #save last response              → Saves previous model output to file
+
+🧹 LOGS
+- #purge logs                      → Deletes logs older than 30 days
+
+📊 STRUCTURE ANALYSIS
+- What's static vs dynamic about this?    → Breaks down which parts of your site idea are static/dynamic
+
+🗃 MEMORY & CHAINING
+- Kevin auto-remembers your last steps and continues execution
+
+🔁 GENERIC
+- Any natural instruction like:
+    - Build me a resume builder
+    - Write me copy for a crypto landing page
+    - Generate a site for a dog grooming app

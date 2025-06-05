@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Competitor Report Tool</title>
+</head>
+<body>
+  <h1>Competitor Report Generator</h1>
+  <input id="competitor" placeholder="Enter competitor name" />
+  <button onclick="fetchReport()">Generate Report</button>
+  <pre id="output"></pre>
+  <script>
+    function fetchReport() {
+      const name = document.getElementById('competitor').value;
+      fetch('/.netlify/functions/generate_report?competitor=' + name)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+        });
+    }
+  </script>
+</body>
+</html>
